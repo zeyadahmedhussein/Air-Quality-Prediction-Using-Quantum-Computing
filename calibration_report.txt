@@ -1,0 +1,31 @@
+QUANTUM ERROR CALIBRATION MATRIX REPORT
+=============================================
+
+Generated: 2025-09-08 18:42:29.156222
+Calibration samples used: 100,000
+Matrix size: 16 × 16
+
+MATRIX PROPERTIES:
+  Condition number: 2.56e+00
+  Min element: -0.329515
+  Max element: 1.420804
+  Mean diagonal: 1.339788
+  Std diagonal: 0.094538
+
+VALIDATION RESULTS:
+  mse_before: 0.000424
+  mse_after: 0.000036
+  fidelity_before: 0.995657
+  fidelity_after: nan
+  tv_before: 0.084028
+  tv_after: 0.028675
+
+USAGE:
+To apply calibration to noisy measurements P_noisy:
+  P_calibrated = calibration_matrix @ P_noisy
+
+File outputs:
+  - calibration_matrix_16x16.npy: NumPy binary format
+  - calibration_matrix_16x16.csv: CSV format
+  - calibration_data.pkl: Complete dataset
+  - calibration_matrix_analysis.png: Visualization
