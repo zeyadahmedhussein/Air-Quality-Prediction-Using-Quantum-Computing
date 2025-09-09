@@ -1,0 +1,120 @@
+{
+  "team": "NILE_TEAM_001",
+  "version": "1.0.0",
+  "backend": "ibm_brisbane",
+  "min_qubits": 127,
+  "shots": 2048,
+  "artifacts": {
+    "predictions": "results/physical/predictions.csv",
+    "metrics": "results/physical/metrics.json",
+    "confusion_matrix": "results/physical/confusion_matrix.png",
+    "run_summary": "results/physical/run_summary.json"
+  },
+  "evidence": {
+    "job_ids_csv": "evidence/job_ids.csv",
+    "logs_dir": "evidence/logs/",
+    "screenshots_dir": "evidence/screenshots/"
+  },
+  "submission_info": {
+    "submission_date": "2024-09-09",
+    "model_type": "Hybrid Quantum-Classical LSTM",
+    "framework": "Qiskit + PyTorch + PennyLane",
+    "description": "A hybrid quantum-classical LSTM model for air quality prediction. Uses classical LSTM for temporal feature extraction followed by a quantum variational circuit for enhanced pattern recognition.",
+    "key_features": [
+      "Multi-step time series forecasting (72-hour prediction)",
+      "Quantum variational layers with parametric gates",
+      "Support for both simulator and physical quantum backends",
+      "Error mitigation and calibration techniques",
+      "Configurable backend selection via CLI"
+    ]
+  },
+  "technical_specs": {
+    "quantum_circuit": {
+      "n_qubits": 4,
+      "n_layers": 3,
+      "gates": ["RX", "RY", "RZ", "CNOT"],
+      "ansatz": "Strongly Entangling Layers"
+    },
+    "classical_model": {
+      "lstm_units": 32,
+      "lstm_layers": 1,
+      "input_features": 9,
+      "output_length": 72
+    },
+    "training": {
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "loss_function": "Binary Cross Entropy",
+      "early_stopping": true,
+      "patience": 5
+    }
+  },
+  "files_structure": {
+    "src/": {
+      "description": "Source code directory",
+      "subdirs": {
+        "preprocessing/": "Data preprocessing modules",
+        "classical_model/": "Classical LSTM training and evaluation",
+        "quantum_model/": "Quantum model training and prediction",
+        "run_evaluation.py": "Main evaluation pipeline script"
+      }
+    },
+    "configs/": {
+      "description": "Configuration files",
+      "files": {
+        "qiskit_backend_config.json": "Backend configuration for Qiskit"
+      }
+    },
+    "data/": {
+      "description": "Data directory (will contain unseen.csv during evaluation)"
+    },
+    "results/": {
+      "description": "Output directory for evaluation results",
+      "subdirs": {
+        "physical/": "Results from physical backend runs",
+        "simulator/": "Results from simulator runs"
+      }
+    },
+    "evidence/": {
+      "description": "Evidence and documentation directory",
+      "files": {
+        "job_ids.csv": "Job tracking information",
+        "logs/": "Execution logs",
+        "screenshots/": "IBM Quantum Portal screenshots"
+      }
+    }
+  },
+  "usage_examples": {
+    "preprocessing": "python src/preprocessing/data_preprocessing.py --mode train --data_path data/training.parquet --output_dir data/processed/",
+    "quantum_training": "python src/quantum_model/train_quantum.py --data_dir data/processed/ --epochs 25 --use_qiskit --backend ibm_brisbane",
+    "quantum_prediction": "python src/quantum_model/predict_quantum.py --model_path models/best_quantum_lstm_model.pth --backend ibm_brisbane --shots 2048 --dataset data/unseen.csv --out results/physical/",
+    "full_evaluation": "python src/run_evaluation.py --dataset data/unseen.csv --backend ibm_brisbane --shots 2048 --mode physical --out results/"
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "packages": [
+      "qiskit>=1.0.0",
+      "qiskit-ibm-runtime>=0.20.0",
+      "qiskit-aer>=0.13.0",
+      "pennylane>=0.34.0",
+      "torch>=2.0.0",
+      "numpy>=1.21.0",
+      "pandas>=1.3.0",
+      "scikit-learn>=1.0.0",
+      "matplotlib>=3.5.0",
+      "seaborn>=0.11.0"
+    ]
+  },
+  "validation": {
+    "backend_requirements": {
+      "min_qubits": 127,
+      "coupling_constraints": "Circuit designed to work with heavy-hex topology",
+      "error_rates": "Optimized for current IBM Quantum backends"
+    },
+    "performance_metrics": {
+      "accuracy": ">0.85",
+      "f1_score": ">0.80",
+      "inference_time": "<300s for 1000 sequences"
+    }
+  }
+}

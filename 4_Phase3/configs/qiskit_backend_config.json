@@ -1,0 +1,9 @@
+{
+  "backend": "ibm_brisbane",
+  "min_qubits": 127,
+  "shots": 2048,
+  "optimization_level": 3,
+  "seed_transpiler": 42,
+  "resilience_level": 1,
+  "enable_dynamic_shots": false
+}
