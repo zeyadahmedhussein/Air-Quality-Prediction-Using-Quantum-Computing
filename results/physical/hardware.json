@@ -1,0 +1,19 @@
+{
+  "title": "Hardware Quantum Computing Analysis Summary",
+  "dataset_overview": {
+    "total_samples_processed": 260,
+    "hardware_predictions_shape": [260, 72]
+  },
+  "performance_summary": {
+    "average_accuracy": 0.7477,
+    "average_accuracy_percentage": "74.77%",
+    "average_f1_score": 0.6250,
+    "performance_stability": 0.8348
+  },
+  "quantum_hardware_insights": {
+    "average_prediction_confidence": 0.8010,
+    "quantum_noise_level": "Moderate",
+    "state_coherence": "Low",
+    "entropy": 6.054
+  }
+}
